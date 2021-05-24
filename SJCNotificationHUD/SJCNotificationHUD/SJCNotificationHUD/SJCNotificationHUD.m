@@ -18,7 +18,7 @@
 
 //iPhone X适配
 
-#define IS_iPhoneX ({\
+#define Noti_iPhoneX ({\
     BOOL isBangsScreen = NO; \
     if (@available(iOS 11.0, *)) { \
     UIWindow *window = [[UIApplication sharedApplication].windows firstObject]; \
@@ -27,7 +27,7 @@
     isBangsScreen; \
 })
 
-#define kStatusBarHeight      (IS_iPhoneX ? 44.f : 20.f)
+#define NotiStatusBarHeight      (Noti_iPhoneX ? 44.f : 20.f)
 
 #define bannerH 100
 #define bannerPading 8
@@ -85,7 +85,7 @@ static SystemSoundID soundID = 0;
     banner.duration = duration;
     banner.completionBlock = complete;
     [banner addView:view];
-    [[UIApplication sharedApplication].keyWindow addSubview:banner];
+    [[self getRootWindow] addSubview:banner];
     [banner show];
     return banner;
 }
@@ -273,7 +273,7 @@ static SystemSoundID soundID = 0;
     CGFloat viewW = view.bounds.size.width;
     CGFloat viewH = view.bounds.size.height;
     
-    UIControl *banner = [[UIControl alloc] initWithFrame:CGRectMake(MAX((self.bounds.size.width-viewW)*0.5, 0), kStatusBarHeight, viewW, viewH)];
+    UIControl *banner = [[UIControl alloc] initWithFrame:CGRectMake(MAX((self.bounds.size.width-viewW)*0.5, 0), NotiStatusBarHeight, viewW, viewH)];
     view.frame = CGRectMake(0, 0, viewW, viewH);
     view.userInteractionEnabled = NO;
     [banner addSubview:view];
@@ -284,7 +284,7 @@ static SystemSoundID soundID = 0;
     [banner addTarget:self action:@selector(scaleToDefault:)
      forControlEvents:UIControlEventTouchDragExit];
 
-    self.contentView.frame = CGRectMake(0, 0, self.bounds.size.width, viewH+kStatusBarHeight);
+    self.contentView.frame = CGRectMake(0, 0, self.bounds.size.width, viewH+NotiStatusBarHeight);
     [self.contentView addSubview:banner];
 }
 
@@ -326,8 +326,10 @@ static SystemSoundID soundID = 0;
         
         [self addSubview:self.maskView];
         [self addSubview:self.contentView];
-        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+#pragma clang diagnostic pop
     }
     return self;
 }
@@ -469,7 +471,7 @@ static SystemSoundID soundID = 0;
             self.contentView.alpha = 0.0;
             self.contentView.transform = CGAffineTransformMakeScale(1.1, 1.1);
                          } completion:^(BOOL finished) {
-                             !_completionBlock ? : _completionBlock(tap);
+                             !self->_completionBlock ? : self->_completionBlock(tap);
                              [self invalidateTimer];
                              [self removeFromSuperview];
                          }];
@@ -479,7 +481,7 @@ static SystemSoundID soundID = 0;
             frame.origin.y = -self.contentView.frame.size.height;
             self.contentView.frame = frame;
         } completion:^(BOOL finished) {
-            !_completionBlock ? : _completionBlock(tap);
+            !self->_completionBlock ? : self->_completionBlock(tap);
             [self invalidateTimer];
             [self removeFromSuperview];
         }];
@@ -512,7 +514,7 @@ static SystemSoundID soundID = 0;
 
 - (UIView *)contentView {
     if (!_contentView) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, bannerH+kStatusBarHeight)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, bannerH+NotiStatusBarHeight)];
     }
     return _contentView;
 }
@@ -524,6 +526,25 @@ static SystemSoundID soundID = 0;
     }
     return view;
 }
+
++ (UIWindow *)getRootWindow {
+    if (@available(iOS 13.0, *)) {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow *window in [windows reverseObjectEnumerator]) {
+            if ([window isKindOfClass:[UIWindow class]] &&
+                window.windowLevel == UIWindowLevelNormal &&
+                CGRectEqualToRect(window.bounds, [UIScreen mainScreen].bounds))
+                return window;
+        }
+    }else{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+        return [UIApplication sharedApplication].keyWindow;
+#pragma clang diagnostic pop
+    }
+    return nil;
+}
+
 
 - (void)dealloc {
     
