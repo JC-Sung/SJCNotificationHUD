@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHN-qQ-o5O">
+                                <rect key="frame" x="20" y="144" width="374" height="40"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="JLN-ro-zbr"/>
+                                </constraints>
+                                <state key="normal" title="显示一条信息">
+                                    <color key="titleColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="show:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zww-7z-ZQX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDj-4G-nXu">
+                                <rect key="frame" x="20" y="224" width="374" height="40"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="EPj-2k-4uK"/>
+                                    <constraint firstAttribute="height" constant="40" id="ItT-IS-yyN"/>
+                                </constraints>
+                                <state key="normal" title="显示成功">
+                                    <color key="titleColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="success:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cla-WC-PwN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxR-Uq-2Cv">
+                                <rect key="frame" x="20" y="304" width="374" height="40"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="BCq-4E-oKr"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="IbP-Df-mBS"/>
+                                </constraints>
+                                <state key="normal" title="显示失败">
+                                    <color key="titleColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="error:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d55-A4-6Oc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qmb-mI-3em">
+                                <rect key="frame" x="20" y="384" width="374" height="40"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="QUI-nd-fo1"/>
+                                    <constraint firstAttribute="height" constant="40" id="TdM-FH-CEB"/>
+                                </constraints>
+                                <state key="normal" title="显示提示">
+                                    <color key="titleColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="info:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4wT-PZ-LuP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xHN-qQ-o5O" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="BJv-QR-nvw"/>
+                            <constraint firstItem="oxR-Uq-2Cv" firstAttribute="trailing" secondItem="xHN-qQ-o5O" secondAttribute="trailing" id="SsO-B7-CBB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xHN-qQ-o5O" secondAttribute="trailing" constant="20" id="Swq-et-6fC"/>
+                            <constraint firstItem="Qmb-mI-3em" firstAttribute="leading" secondItem="xHN-qQ-o5O" secondAttribute="leading" id="Wlk-bf-9yv"/>
+                            <constraint firstItem="FDj-4G-nXu" firstAttribute="trailing" secondItem="xHN-qQ-o5O" secondAttribute="trailing" id="YRb-R7-xZH"/>
+                            <constraint firstItem="oxR-Uq-2Cv" firstAttribute="top" secondItem="FDj-4G-nXu" secondAttribute="bottom" constant="40" id="ahm-h8-DYa"/>
+                            <constraint firstItem="oxR-Uq-2Cv" firstAttribute="leading" secondItem="xHN-qQ-o5O" secondAttribute="leading" id="fgW-dv-8NL"/>
+                            <constraint firstItem="Qmb-mI-3em" firstAttribute="trailing" secondItem="xHN-qQ-o5O" secondAttribute="trailing" id="nbZ-Vu-yQ3"/>
+                            <constraint firstItem="FDj-4G-nXu" firstAttribute="top" secondItem="xHN-qQ-o5O" secondAttribute="bottom" constant="40" id="npe-F1-xnn"/>
+                            <constraint firstItem="Qmb-mI-3em" firstAttribute="top" secondItem="oxR-Uq-2Cv" secondAttribute="bottom" constant="40" id="o0D-yM-g0K"/>
+                            <constraint firstItem="FDj-4G-nXu" firstAttribute="leading" secondItem="xHN-qQ-o5O" secondAttribute="leading" id="sFK-v7-3Ns"/>
+                            <constraint firstItem="xHN-qQ-o5O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="zEX-WM-c16"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135" y="138"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
